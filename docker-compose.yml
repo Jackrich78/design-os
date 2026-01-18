@@ -1,0 +1,22 @@
+services:
+  design-os:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      # Mount source code for live editing
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./index.html:/app/index.html
+      - ./vite.config.ts:/app/vite.config.ts
+      - ./tsconfig.json:/app/tsconfig.json
+      - ./tsconfig.app.json:/app/tsconfig.app.json
+      - ./tsconfig.node.json:/app/tsconfig.node.json
+
+      # Persist node_modules in named volume (faster, isolated)
+      - node_modules:/app/node_modules
+    environment:
+      - NODE_ENV=development
+
+volumes:
+  node_modules:
