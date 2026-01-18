@@ -21,3 +21,6 @@ dist/
 # Logs
 *.log
 npm-debug.log*
+
+# Documents
+working-with-GIT-forks.md
