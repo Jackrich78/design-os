@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "models": {
+      "user": "API key-based identity for syncing flashcard data between devices. Manages authentication via hashed API keys.",
+      "practiceSettings": "Global practice preferences that apply to all practice sessions. Includes max cards per review and max retries for difficult cards.",
+      "syncSettings": "Device sync configuration using API keys. Tracks whether an API key is active and when the last sync occurred.",
+      "exportHistory": "Tracks when the user last exported their flashcard data as a backup."
+    },
+    "relationships": [
+      "User has one set of practice settings",
+      "User has one set of sync settings",
+      "User can generate one active API key at a time (revoke to generate a new one)",
+      "Export history tracks the most recent data export timestamp"
+    ]
+  },
+  "user": {
+    "id": "user-001",
+    "name": "Alex",
+    "email": null,
+    "createdAt": "2025-11-01T10:00:00Z"
+  },
+  "practiceSettings": {
+    "maxCardsPerReview": 20,
+    "maxRetries": 3
+  },
+  "syncSettings": {
+    "hasApiKey": true,
+    "apiKeyGeneratedAt": "2025-12-15T14:30:00Z",
+    "lastSyncedAt": "2026-02-06T09:15:00Z",
+    "syncStatus": "success"
+  },
+  "exportHistory": {
+    "lastExportedAt": "2026-01-28T16:45:00Z",
+    "exportCount": 3
+  }
+}

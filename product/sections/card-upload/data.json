@@ -1,0 +1,144 @@
+{
+  "_meta": {
+    "models": {
+      "imageJobs": "An OCR processing job triggered when a user uploads notebook photos. Tracks processing status and stores extracted candidate cards as a JSON string for the user to review, edit, and approve.",
+      "ocrCandidates": "Flashcard candidates extracted from an uploaded photo (stored as JSON within ImageJob.candidates). Each candidate has Spanish/English text that can be edited before accepting.",
+      "images": "An uploaded notebook photo stored in Cloudflare R2. Tracks the R2 key and retention policy (keep forever or auto-expire)."
+    },
+    "relationships": [
+      "Each ImageJob references an R2 object via imageKey (matches images.r2Key)",
+      "Each ImageJob stores OCR candidates as a JSON string in the candidates field",
+      "Each accepted candidate becomes a Card with sourceImageId pointing to the Image ID",
+      "Images can be kept forever or set to auto-expire after processing"
+    ]
+  },
+  "imageJobs": [
+    {
+      "id": "job-001",
+      "userId": "user-001",
+      "imageKey": "uploads/user-001/2026-02-06-notebook-page-5.jpg",
+      "status": "complete",
+      "candidates": "[{\"id\":\"cand-001\",\"front\":\"despedirse\",\"back\":\"to say goodbye\",\"cardType\":\"word\",\"confidence\":0.92,\"accepted\":null},{\"id\":\"cand-002\",\"front\":\"a lo largo de\",\"back\":\"throughout / along\",\"cardType\":\"phrase\",\"confidence\":0.88,\"accepted\":null},{\"id\":\"cand-003\",\"front\":\"advertir\",\"back\":\"to warn / to notice\",\"cardType\":\"word\",\"confidence\":0.95,\"accepted\":null},{\"id\":\"cand-004\",\"front\":\"de hecho\",\"back\":\"in fact / actually\",\"cardType\":\"phrase\",\"confidence\":0.91,\"accepted\":null},{\"id\":\"cand-005\",\"front\":\"comprobar\",\"back\":\"to check / to verify\",\"cardType\":\"word\",\"confidence\":0.86,\"accepted\":null},{\"id\":\"cand-006\",\"front\":\"estar a punto de\",\"back\":\"to be about to\",\"cardType\":\"phrase\",\"confidence\":0.89,\"accepted\":null}]",
+      "errorMessage": null,
+      "createdAt": "2026-02-06T10:00:00Z",
+      "updatedAt": "2026-02-06T10:00:32Z"
+    },
+    {
+      "id": "job-002",
+      "userId": "user-001",
+      "imageKey": "uploads/user-001/2026-02-04-notebook-page-4.jpg",
+      "status": "complete",
+      "candidates": "[{\"id\":\"cand-007\",\"front\":\"conseguir\",\"back\":\"to get / to achieve\",\"cardType\":\"word\",\"confidence\":0.94,\"accepted\":true},{\"id\":\"cand-008\",\"front\":\"sin embargo\",\"back\":\"however / nevertheless\",\"cardType\":\"phrase\",\"confidence\":0.91,\"accepted\":true},{\"id\":\"cand-009\",\"front\":\"cotidiano\",\"back\":\"daily / everyday\",\"cardType\":\"word\",\"confidence\":0.89,\"accepted\":true},{\"id\":\"cand-010\",\"front\":\"destacar\",\"back\":\"to stand out / to highlight\",\"cardType\":\"word\",\"confidence\":0.93,\"accepted\":true}]",
+      "errorMessage": null,
+      "createdAt": "2026-02-04T19:00:00Z",
+      "updatedAt": "2026-02-04T19:00:28Z"
+    },
+    {
+      "id": "job-003",
+      "userId": "user-001",
+      "imageKey": "uploads/user-001/2026-02-06-notebook-page-6.jpg",
+      "status": "processing",
+      "candidates": null,
+      "errorMessage": null,
+      "createdAt": "2026-02-06T10:15:00Z",
+      "updatedAt": "2026-02-06T10:15:00Z"
+    }
+  ],
+  "ocrCandidates": [
+    {
+      "id": "cand-001",
+      "imageJobId": "job-001",
+      "front": "despedirse",
+      "back": "to say goodbye",
+      "cardType": "word",
+      "confidence": 0.92,
+      "accepted": null
+    },
+    {
+      "id": "cand-002",
+      "imageJobId": "job-001",
+      "front": "a lo largo de",
+      "back": "throughout / along",
+      "cardType": "phrase",
+      "confidence": 0.88,
+      "accepted": null
+    },
+    {
+      "id": "cand-003",
+      "imageJobId": "job-001",
+      "front": "advertir",
+      "back": "to warn / to notice",
+      "cardType": "word",
+      "confidence": 0.95,
+      "accepted": null
+    },
+    {
+      "id": "cand-004",
+      "imageJobId": "job-001",
+      "front": "de hecho",
+      "back": "in fact / actually",
+      "cardType": "phrase",
+      "confidence": 0.91,
+      "accepted": null
+    },
+    {
+      "id": "cand-005",
+      "imageJobId": "job-001",
+      "front": "comprobar",
+      "back": "to check / to verify",
+      "cardType": "word",
+      "confidence": 0.86,
+      "accepted": null
+    },
+    {
+      "id": "cand-006",
+      "imageJobId": "job-001",
+      "front": "estar a punto de",
+      "back": "to be about to",
+      "cardType": "phrase",
+      "confidence": 0.89,
+      "accepted": null
+    }
+  ],
+  "images": [
+    {
+      "id": "img-006",
+      "userId": "user-001",
+      "r2Key": "uploads/user-001/2026-02-06-notebook-page-5.jpg",
+      "keepForever": false,
+      "createdAt": "2026-02-06T10:00:00Z",
+      "expiresAt": "2026-03-06T10:00:00Z"
+    },
+    {
+      "id": "img-007",
+      "userId": "user-001",
+      "r2Key": "uploads/user-001/2026-02-06-notebook-page-6.jpg",
+      "keepForever": false,
+      "createdAt": "2026-02-06T10:15:00Z",
+      "expiresAt": "2026-03-06T10:15:00Z"
+    }
+  ],
+  "decks": [
+    {
+      "id": "deck-default",
+      "name": "My Cards",
+      "description": "Default deck for unsorted cards",
+      "color": "#8b5cf6",
+      "isDefault": true
+    },
+    {
+      "id": "deck-b11",
+      "name": "B1.1 Phrases",
+      "description": "Phrases from B1.1 coursework, chapters 1-5",
+      "color": "#7c3aed",
+      "isDefault": false
+    },
+    {
+      "id": "deck-b12",
+      "name": "B1.2 Grammar",
+      "description": "Grammar patterns and conjugations from B1.2",
+      "color": "#0ea5e9",
+      "isDefault": false
+    }
+  ]
+}

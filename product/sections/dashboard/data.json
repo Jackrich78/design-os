@@ -1,0 +1,180 @@
+{
+  "_meta": {
+    "models": {
+      "decks": "A named, color-coded collection of flashcards. Dashboard shows per-deck confidence scores, mastery distribution, and card counts.",
+      "cards": "Flashcards with SM-2 spaced repetition state. Dashboard surfaces weak cards (low confidence or high lapses) that need more practice.",
+      "dashboardStats": "Overall study metrics including total cards, total reviews completed, and current study streak (consecutive days).",
+      "dueCardsSummary": "Cards due for review today, broken down by deck. Powers the 'Due today' banner at the top of the dashboard.",
+      "reviewActivity": "Daily review counts for the last 28 days. Displayed as a bar chart or heatmap to visualize study patterns."
+    },
+    "relationships": [
+      "Each Deck contains Cards and tracks aggregate stats (confidence, mastery breakdown)",
+      "Weak cards are Cards with easeFactor < 2.0 or lapses > 2",
+      "Due cards are Cards where nextReview <= today",
+      "Review activity aggregates reviewCount changes per day across all cards",
+      "Dashboard stats aggregate counts across all decks and cards"
+    ]
+  },
+  "dashboardStats": {
+    "totalCards": 17,
+    "totalReviews": 142,
+    "currentStreak": 12,
+    "lastReviewDate": "2026-02-06T00:00:00Z"
+  },
+  "dueCardsSummary": {
+    "totalDue": 10,
+    "byDeck": [
+      {
+        "deckId": "deck-b11",
+        "deckName": "B1.1 Phrases",
+        "deckColor": "#7c3aed",
+        "dueCount": 5
+      },
+      {
+        "deckId": "deck-b12",
+        "deckName": "B1.2 Grammar",
+        "deckColor": "#0ea5e9",
+        "dueCount": 3
+      },
+      {
+        "deckId": "deck-default",
+        "deckName": "My Cards",
+        "deckColor": "#8b5cf6",
+        "dueCount": 2
+      }
+    ]
+  },
+  "reviewActivity": [
+    { "date": "2026-01-10", "count": 8 },
+    { "date": "2026-01-11", "count": 12 },
+    { "date": "2026-01-12", "count": 6 },
+    { "date": "2026-01-13", "count": 0 },
+    { "date": "2026-01-14", "count": 15 },
+    { "date": "2026-01-15", "count": 9 },
+    { "date": "2026-01-16", "count": 11 },
+    { "date": "2026-01-17", "count": 7 },
+    { "date": "2026-01-18", "count": 14 },
+    { "date": "2026-01-19", "count": 10 },
+    { "date": "2026-01-20", "count": 8 },
+    { "date": "2026-01-21", "count": 13 },
+    { "date": "2026-01-22", "count": 9 },
+    { "date": "2026-01-23", "count": 11 },
+    { "date": "2026-01-24", "count": 0 },
+    { "date": "2026-01-25", "count": 6 },
+    { "date": "2026-01-26", "count": 12 },
+    { "date": "2026-01-27", "count": 8 },
+    { "date": "2026-01-28", "count": 10 },
+    { "date": "2026-01-29", "count": 14 },
+    { "date": "2026-01-30", "count": 9 },
+    { "date": "2026-01-31", "count": 7 },
+    { "date": "2026-02-01", "count": 11 },
+    { "date": "2026-02-02", "count": 13 },
+    { "date": "2026-02-03", "count": 8 },
+    { "date": "2026-02-04", "count": 15 },
+    { "date": "2026-02-05", "count": 12 },
+    { "date": "2026-02-06", "count": 6 }
+  ],
+  "decks": [
+    {
+      "id": "deck-default",
+      "name": "My Cards",
+      "description": "Default deck for unsorted cards",
+      "color": "#8b5cf6",
+      "cardCount": 3,
+      "dueCount": 2,
+      "totalReviews": 18,
+      "confidence": 72,
+      "mastery": { "new": 1, "learning": 1, "reviewing": 1, "mastered": 0 }
+    },
+    {
+      "id": "deck-b11",
+      "name": "B1.1 Phrases",
+      "description": "Phrases from B1.1 coursework, chapters 1-5",
+      "color": "#7c3aed",
+      "cardCount": 8,
+      "dueCount": 5,
+      "totalReviews": 67,
+      "confidence": 64,
+      "mastery": { "new": 1, "learning": 3, "reviewing": 3, "mastered": 1 }
+    },
+    {
+      "id": "deck-b12",
+      "name": "B1.2 Grammar",
+      "description": "Grammar patterns and conjugations from B1.2",
+      "color": "#0ea5e9",
+      "cardCount": 4,
+      "dueCount": 3,
+      "totalReviews": 41,
+      "confidence": 55,
+      "mastery": { "new": 1, "learning": 1, "reviewing": 1, "mastered": 1 }
+    },
+    {
+      "id": "deck-travel",
+      "name": "Travel Essentials",
+      "description": "Common phrases for getting around and asking for help",
+      "color": "#a78bfa",
+      "cardCount": 2,
+      "dueCount": 0,
+      "totalReviews": 34,
+      "confidence": 91,
+      "mastery": { "new": 0, "learning": 0, "reviewing": 0, "mastered": 2 }
+    }
+  ],
+  "weakCards": [
+    {
+      "id": "card-004",
+      "deckId": "deck-b11",
+      "front": "me gustaría saber si es posible cambiar la fecha",
+      "back": "I would like to know if it's possible to change the date",
+      "easeFactor": 1.8,
+      "lapses": 2,
+      "reviewCount": 8,
+      "correctCount": 4,
+      "confidence": 50
+    },
+    {
+      "id": "card-008",
+      "deckId": "deck-b11",
+      "front": "tener en cuenta",
+      "back": "to take into account / to bear in mind",
+      "easeFactor": 2.0,
+      "lapses": 3,
+      "reviewCount": 12,
+      "correctCount": 6,
+      "confidence": 50
+    },
+    {
+      "id": "card-010",
+      "deckId": "deck-b11",
+      "front": "dar igual",
+      "back": "to not matter / to be all the same",
+      "easeFactor": 1.9,
+      "lapses": 2,
+      "reviewCount": 6,
+      "correctCount": 3,
+      "confidence": 50
+    },
+    {
+      "id": "card-013",
+      "deckId": "deck-b12",
+      "front": "haya",
+      "back": "has / have (present subjunctive of haber)",
+      "easeFactor": 1.9,
+      "lapses": 2,
+      "reviewCount": 9,
+      "correctCount": 5,
+      "confidence": 56
+    },
+    {
+      "id": "card-006",
+      "deckId": "deck-b11",
+      "front": "en cuanto",
+      "back": "as soon as",
+      "easeFactor": 2.1,
+      "lapses": 1,
+      "reviewCount": 7,
+      "correctCount": 4,
+      "confidence": 57
+    }
+  ]
+}
